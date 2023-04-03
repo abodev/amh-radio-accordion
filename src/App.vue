@@ -1,30 +1,25 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <h1>{{ TITLE }}</h1>
+  <RadioAccordion
+    v-for="(option, index) in RADIO_ACCORDIONS_MOCK"
+    :key="option.value"
+    :id="'option-' + index"
+    :name="'options'"
+    :value="option.value"
+    :option="option"
+    :active="option.active ?? true"
+    v-model="selectedOption"
+  />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script setup lang="ts">
+import { ref } from 'vue';
+import RadioAccordion from './components/RadioAccordion.vue';
+import { RADIO_ACCORDIONS_MOCK } from './mocks/RadioAccordionMock';
+
+const TITLE = 'What are you looking to do?';
+
+const selectedOption = ref('');
+</script>
+
+<style scoped></style>
