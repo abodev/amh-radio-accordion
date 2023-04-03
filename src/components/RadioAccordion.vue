@@ -3,7 +3,7 @@
     class="flex p-4 pb-0 my-4 shadow-md"
     :class="['bg-' + (expanded ? 'amh-light-yellow' : 'white')]"
   >
-    <div class="mt-3 mr-4">
+    <div class="relative mr-4">
       <input
         :id="id"
         :name="name"
@@ -11,7 +11,12 @@
         :disabled="!active"
         type="radio"
         v-model="internalModelValue"
+        class="hidden"
+      />
+      <CheckMarkIcon
+        :checked="expanded"
         @click="onChange"
+        class="absolute top-[14px] cursor-pointer"
       />
     </div>
     <div class="w-full px-0 py-2">
@@ -35,6 +40,7 @@
 <script setup lang="ts">
 import { computed, ref, watchEffect } from 'vue';
 import { Options } from '../types/RadioAccordion';
+import CheckMarkIcon from './CheckMarkIcon.vue';
 
 interface Props {
   modelValue?: string;
