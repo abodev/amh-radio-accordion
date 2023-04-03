@@ -29,8 +29,12 @@
           v-for="suboption in option.subOptions"
           :key="suboption.title"
           :href="suboption.link"
+          class="flex items-center justify-between py-2 pl-2"
         >
-          <span>{{ suboption.title }}</span>
+          <span class="font-medium text-amh-suboption">{{
+            suboption.title
+          }}</span>
+          <RightArrowIcon class="w-6 h-6" />
         </a>
       </div>
     </div>
@@ -41,6 +45,7 @@
 import { computed, ref, watchEffect } from 'vue';
 import { Options } from '../types/RadioAccordion';
 import CheckMarkIcon from './CheckMarkIcon.vue';
+import RightArrowIcon from './RightArrowIcon.vue';
 
 interface Props {
   modelValue?: string;
