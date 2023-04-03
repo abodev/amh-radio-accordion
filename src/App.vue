@@ -1,6 +1,6 @@
 <template>
-  <div class="max-w-2xl mx-auto mt-20 bg-white">
-    <div>{{ TITLE }}</div>
+  <div class="max-w-2xl p-8 mx-auto mt-20 bg-white rounded-lg shadow">
+    <div class="mb-4 font-medium text-amh-gray">{{ TITLE }}</div>
     <RadioAccordion
       v-for="(option, index) in RADIO_ACCORDIONS_MOCK"
       :key="option.value"
