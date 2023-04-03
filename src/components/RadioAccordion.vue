@@ -1,7 +1,7 @@
 <template>
   <div
-    class="flex p-4 pb-0 my-4 shadow-md"
-    :class="['bg-' + (expanded ? 'amh-light-yellow' : 'white')]"
+    class="flex p-4 pb-0 my-4 shadow-md hover:bg-amh-light-yellow"
+    :class="[(expanded ? 'bg-amh-light-yellow' : 'bg-white')]"
   >
     <div class="relative mr-4">
       <input
@@ -29,7 +29,7 @@
           v-for="suboption in option.subOptions"
           :key="suboption.title"
           :href="suboption.link"
-          class="flex items-center justify-between py-2 pl-2"
+          class="flex items-center justify-between py-2 pl-2 hover:bg-pink-100"
         >
           <span class="font-medium text-amh-suboption">{{
             suboption.title
@@ -68,6 +68,7 @@ watchEffect(() => {
 const expanded = computed(() => internalModelValue.value === props.value);
 
 const onChange = () => {
+  if (!props.active) return;
   if (props.value) {
     emit('update:modelValue', props.value);
   }
