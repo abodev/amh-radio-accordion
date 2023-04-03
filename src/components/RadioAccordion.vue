@@ -1,14 +1,32 @@
 <template>
-  <input
-    :id="id"
-    :name="name"
-    :value="value"
-    :disabled="!active"
-    type="radio"
-    v-model="internalModelValue"
-    @click="onChange"
-  />
-  <div>{{ expanded ? 'expanded' : 'not expanded' }}</div>
+  <div class="flex">
+    <div>
+      <input
+        :id="id"
+        :name="name"
+        :value="value"
+        :disabled="!active"
+        type="radio"
+        v-model="internalModelValue"
+        @click="onChange"
+      />
+    </div>
+    <div>
+      <div>
+        <div>{{ option.title }}</div>
+        <div>{{ option.subtitle }}</div>
+      </div>
+      <div v-show="expanded">
+        <a
+          v-for="suboption in option.subOptions"
+          :key="suboption.title"
+          :href="suboption.link"
+        >
+          <span>{{ suboption.title }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

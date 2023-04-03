@@ -1,15 +1,17 @@
 <template>
-  <h1>{{ TITLE }}</h1>
-  <RadioAccordion
-    v-for="(option, index) in RADIO_ACCORDIONS_MOCK"
-    :key="option.value"
-    :id="'option-' + index"
-    :name="'options'"
-    :value="option.value"
-    :option="option"
-    :active="option.active ?? true"
-    v-model="selectedOption"
-  />
+  <div class="max-w-2xl mx-auto mt-20 bg-white">
+    <div>{{ TITLE }}</div>
+    <RadioAccordion
+      v-for="(option, index) in RADIO_ACCORDIONS_MOCK"
+      :key="option.value"
+      :id="'option-' + index"
+      :name="'options'"
+      :value="option.value"
+      :option="option"
+      :active="option.active ?? true"
+      v-model="selectedOption"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
