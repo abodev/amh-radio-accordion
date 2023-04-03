@@ -5,12 +5,14 @@
     :value="value"
     :disabled="!active"
     type="radio"
+    v-model="internalModelValue"
+    @click="onChange"
   />
-  <div>{{ option.title }}</div>
-  <div>{{ option.subtitle }}</div>
+  <div>{{ expanded ? 'expanded' : 'not expanded' }}</div>
 </template>
 
 <script setup lang="ts">
+import { computed, ref, watchEffect } from 'vue';
 import { Options } from '../types/RadioAccordion';
 
 interface Props {
@@ -23,6 +25,21 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const emit = defineEmits<(event: 'update:modelValue', value: string) => void>();
+
+const internalModelValue = ref(props.modelValue);
+
+watchEffect(() => {
+  internalModelValue.value = props.modelValue;
+});
+
+const expanded = computed(() => internalModelValue.value === props.value);
+
+const onChange = () => {
+  if (props.value) {
+    emit('update:modelValue', props.value);
+  }
+};
 </script>
 
 <style scoped></style>
